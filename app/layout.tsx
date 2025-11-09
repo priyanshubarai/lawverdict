@@ -20,7 +20,7 @@ export default function RootLayout({
       <head>
         <ThemeModeScript />
       </head>
-      <body>
+      <body className="flex flex-col min-h-screen">
         <ThemeInit />
         <NavBar/>
         {children}
