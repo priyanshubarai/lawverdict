@@ -1,27 +1,35 @@
 import React from "react";
-import Logo from "../components/Logo"
+import Logo from "../components/Logo";
 
 const NavBar = () => {
   return (
     <div>
-      <nav className=" start-0 top-0 z-20 w-full border-b border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-900">
+      <nav className="start-0 top-0 z-20 w-full border-b border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-900">
         <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-between p-4">
           <a
-            href="/home"
+            href="/"
             className="flex items-center space-x-3 rtl:space-x-reverse"
           >
-            <Logo/>
+            <Logo />
             <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
               Law & Verdict
             </span>
           </a>
           <div className="flex space-x-3 md:order-2 md:space-x-0 rtl:space-x-reverse">
-            <button
+            {/* <button
               type="button"
               className="rounded-lg bg-blue-700 px-4 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
             >
               Log in
-            </button>
+            </button> */}
+
+            <a
+              href="/auth/login"
+              className="rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              Login
+            </a>
+
             <button
               data-collapse-toggle="navbar-sticky"
               type="button"
