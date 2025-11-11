@@ -1,7 +1,13 @@
-import React from "react";
+"use client";
+
+import React, { use, useState } from "react";
 import Logo from "../components/Logo";
+import { useUser } from "@auth0/nextjs-auth0";
+// import Profile from "../components/Profile"
 
 const NavBar = () => {
+  const { user, isLoading } = useUser();
+
   return (
     <div>
       <nav className="start-0 top-0 z-20 w-full border-b border-gray-200 bg-white dark:border-gray-600 dark:bg-gray-900">
@@ -16,19 +22,32 @@ const NavBar = () => {
             </span>
           </a>
           <div className="flex space-x-3 md:order-2 md:space-x-0 rtl:space-x-reverse">
-            {/* <button
-              type="button"
-              className="rounded-lg bg-blue-700 px-4 py-2 text-center text-sm font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Log in
-            </button> */}
+            {!isLoading && !user && (
+              <a
+                href="/auth/login?returnTo=/add-phone"
+                className="rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              >
+                Login
+              </a>
+            )}
+            {user && !isLoading && (
+              <div className="flex gap-2">
+                <a href="/profile">
+                  <img
+                    className="h-10 w-10 rounded-full"
+                    src={user.picture}
+                    alt={user.name}
+                  />
+                </a>
 
-            <a
-              href="/auth/login"
-              className="rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-            >
-              Login
-            </a>
+                <a
+                  href="/auth/logout"
+                  className="rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                >
+                  Log out
+                </a>
+              </div>
+            )}
 
             <button
               data-collapse-toggle="navbar-sticky"
@@ -75,14 +94,6 @@ const NavBar = () => {
                   className="block rounded-sm px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
                 >
                   Dashboard
-                </a>
-              </li>
-              <li>
-                <a
-                  href="/about"
-                  className="block rounded-sm px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
-                >
-                  About
                 </a>
               </li>
             </ul>
