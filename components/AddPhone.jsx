@@ -1,46 +1,24 @@
 "use client";
 
+import { addPhoneModel } from "@/lib/model";
 import React, { useEffect, useState } from "react";
 import { useUser } from "@auth0/nextjs-auth0";
-import { supabase } from "../lib/supabaseClient";
-import { redirect, useRouter } from "next/navigation";
 
 const AddPhone = () => {
-  const { user } = useUser() || {};
+  const { user } = useUser();
   const email = user?.email;
   const name = user?.name;
-  const router = useRouter();
   const [phone, setPhone] = useState("");
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e) {
-    // e.preventDefault();
     setLoading(true);
     try {
-      const res = await fetch("/api/add-phone", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, name, phone }),
-      });
-
-      let data = null;
-      try {
-        data = await res.json();
-      } catch (err) {
-        console.warn("Failed to parse JSON response from /api/add-phone", err);
-      }
-
-      if (!res.ok) {
-        console.error("Server error", res.status, data);
-      } else {
-        console.log("Success:", data);
-      }
+      const data = addPhoneModel(email,name,phone);
     } catch (err) {
       console.error("Network or fetch error", err);
     } finally {
       setLoading(false);
-      // Redirect to profile after successful submission
-      // router.push("/profile");
     }
   }
 

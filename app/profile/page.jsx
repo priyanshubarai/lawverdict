@@ -18,15 +18,16 @@ const ProfilePage = () => {
     }
     const fetchPhone = async () => {
       const data = await getUserByEmail(user.email);
-      if (data?.phone) {
-        setPhone(data.phone);
-        console.log(`Phone no fetched: ${data.phone}`);
+      // console.log(`data : ${JSON.stringify(data, null, 2)}`)
+      if (data?.data?.phone) {
+        setPhone(data.data.phone);
+        console.log(`Phone no fetched: ${data.data.phone}`);
       } else {
         console.log("no phone found");
       }
     };
     if(user) fetchPhone();
-  }, [user,ProfilePage]);
+  }, [user,phone,ProfilePage]);
 
   if (isLoading) return <p>Loading...</p>;
   return (
