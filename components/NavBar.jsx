@@ -24,7 +24,7 @@ const NavBar = () => {
           <div className="flex space-x-3 md:order-2 md:space-x-0 rtl:space-x-reverse">
             {!isLoading && !user && (
               <a
-                href="/auth/login?returnTo=/add-phone"
+                href="/auth/login?returnTo=/profile"
                 className="rounded-lg bg-blue-700 px-5 py-2.5 text-sm font-medium text-white hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
               >
                 Login
@@ -90,10 +90,10 @@ const NavBar = () => {
               </li>
               <li>
                 <a
-                  href="/dashboard"
+                  href="/profile"
                   className="block rounded-sm px-3 py-2 text-gray-900 hover:bg-gray-100 md:p-0 md:hover:bg-transparent md:hover:text-blue-700 dark:border-gray-700 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent md:dark:hover:text-blue-500"
                 >
-                  Dashboard
+                  Profile
                 </a>
               </li>
             </ul>

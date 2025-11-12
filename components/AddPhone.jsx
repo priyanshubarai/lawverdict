@@ -1,18 +1,20 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useUser } from "@auth0/nextjs-auth0";
+import { supabase } from "../lib/supabaseClient";
+import { redirect, useRouter } from "next/navigation";
 
 const AddPhone = () => {
   const { user } = useUser() || {};
   const email = user?.email;
   const name = user?.name;
-
+  const router = useRouter();
   const [phone, setPhone] = useState("");
   const [loading, setLoading] = useState(false);
 
   async function handleSubmit(e) {
-    e.preventDefault();
+    // e.preventDefault();
     setLoading(true);
     try {
       const res = await fetch("/api/add-phone", {
@@ -37,6 +39,8 @@ const AddPhone = () => {
       console.error("Network or fetch error", err);
     } finally {
       setLoading(false);
+      // Redirect to profile after successful submission
+      // router.push("/profile");
     }
   }
 
