@@ -26,7 +26,7 @@ export async function GET(req: NextRequest) {
   }
 }
 
-export async function POST(req:NextResponse) {
+export async function POST(req:NextRequest) {
   const { email, name, phone } = await req.json();
   try {
     console.log("POST :", { email, name, phone });
